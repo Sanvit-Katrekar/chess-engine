@@ -24,7 +24,10 @@ public class WelcomePage extends JFrame implements ActionListener {
     btnPanel.add(loginButton);
     btnPanel.add(signupButton);
     btnPanel.setLayout(new FlowLayout());
-    JLabel img = new ImgResource("chess.png", 100, 100);
+    Dimension size= Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int)size.getWidth();
+    int height=(int)size.getHeight();
+    JLabel img = new ImgResource("chess.png",width/2,height/2);
     btnPanel.add(img);
 
     super.add(greetingLabel, BorderLayout.CENTER);
@@ -40,7 +43,12 @@ public class WelcomePage extends JFrame implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent event) {
-    new LoginPage();
+    try {
+      new LoginPage();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
   public static void main(String[] args) throws IOException {
     WelcomePage WelcomePage = new WelcomePage();
