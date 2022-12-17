@@ -14,7 +14,7 @@ public class WelcomePage extends JFrame implements ActionListener {
   private JButton loginButton;
   private JButton signupButton;
 
-  public WelcomePage() {
+  public WelcomePage() throws IOException {
     super("Java Chess");
     greetingLabel = new JLabel("Welcome to Java-Chess");
     loginButton = new JButton("Log in");
@@ -24,6 +24,8 @@ public class WelcomePage extends JFrame implements ActionListener {
     btnPanel.add(loginButton);
     btnPanel.add(signupButton);
     btnPanel.setLayout(new FlowLayout());
+    JLabel img = new ImgResource("chess.png", 100, 100);
+    btnPanel.add(img);
 
     super.add(greetingLabel, BorderLayout.CENTER);
     super.add(btnPanel, BorderLayout.CENTER);
@@ -40,7 +42,7 @@ public class WelcomePage extends JFrame implements ActionListener {
   public void actionPerformed(ActionEvent event) {
     new LoginPage();
   }
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     WelcomePage WelcomePage = new WelcomePage();
     WelcomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
