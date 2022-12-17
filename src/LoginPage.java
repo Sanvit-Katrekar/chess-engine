@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class LoginPage extends JFrame implements ActionListener {
@@ -8,12 +10,13 @@ public class LoginPage extends JFrame implements ActionListener {
   private JTextField usernameField;
   private JPasswordField passwordField;
 
-  public LoginPage() {
+  public LoginPage() throws IOException{
     super(" Java Chess");
     greetingLabel = new JLabel("Login to Java Chess");
     loginButton = new JButton("Log in");
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
+    JLabel imgLabel = new ImgResource("chess.png", 10, 10, 100, 100);
 
     JPanel loginPanel = new JPanel();
     loginPanel.add(new JLabel("Username:"));
@@ -21,6 +24,7 @@ public class LoginPage extends JFrame implements ActionListener {
     loginPanel.add(new JLabel("Password:"));
     loginPanel.add(passwordField);
     loginPanel.add(loginButton);
+    loginPanel.add(imgLabel);
     loginPanel.setLayout(new GridBagLayout());
 
     super.add(greetingLabel, BorderLayout.NORTH);
@@ -47,7 +51,7 @@ public class LoginPage extends JFrame implements ActionListener {
   return true;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     LoginPage LoginPage = new LoginPage();
     LoginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }

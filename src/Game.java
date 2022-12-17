@@ -5,10 +5,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Game {
@@ -27,7 +25,7 @@ public class Game {
     public static void main(String[] args) throws IOException {
         // Loading chess piece images
         // BufferedImage piecesImg = ImageIO.read(new File(Resource.getResourcePath("pieces.png")));
-        BufferedImage piecesImg = ImgResource.get("pieces.png");
+        BufferedImage piecesImg = new ImgResource("pieces.png").getBuff();
         int imgWidth = piecesImg.getWidth();
         int imgHeight = piecesImg.getHeight();
         int imgRows = 2;

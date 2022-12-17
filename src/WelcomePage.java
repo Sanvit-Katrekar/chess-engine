@@ -38,7 +38,12 @@ public class WelcomePage extends JFrame implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent event) {
-    new LoginPage();
+    try {
+      new LoginPage();
+    }
+    catch (IOException e) {
+      System.out.println("Error occured: Could not launch login page!");
+    }
   }
   public static void main(String[] args) {
     WelcomePage WelcomePage = new WelcomePage();
