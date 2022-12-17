@@ -42,6 +42,13 @@ public class LoginPage extends JFrame implements ActionListener {
     char[] password = passwordField.getPassword();
     if (authenticate(username, password)) {
       JOptionPane.showMessageDialog(this, username+" has logged in");
+      try {
+        Game game = new Game();
+        game.run();
+      }
+      catch(IOException e) {
+        System.out.println("Could not instantiate object!");
+      }
     } else {
       JOptionPane.showMessageDialog(this, "Invalid Login Credentials");
     }

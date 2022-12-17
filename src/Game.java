@@ -23,6 +23,10 @@ public class Game {
         return null;
     }
     public static void main(String[] args) throws IOException {
+        Game game = new Game();
+        game.run();
+    }
+    public void run() throws IOException {
         // Loading chess piece images
         // BufferedImage piecesImg = ImageIO.read(new File(Resource.getResourcePath("pieces.png")));
         BufferedImage piecesImg = new ImgResource("pieces.png").getBuff();
@@ -38,8 +42,6 @@ public class Game {
                 index++;
             }    
         }
-    
-
         new Piece("h1", false, "rook", ps);
         new Piece("h2", false, "knight", ps);
         new Piece("h3", false, "bishop", ps);
