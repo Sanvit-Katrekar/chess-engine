@@ -22,7 +22,7 @@ public class Game {
             if (p.xp == xp && p.yp == yp){
                 return p;
             }
-        }
+        }//hi
         return null;
     }
     public static String getResourcePath(String fileName) {
