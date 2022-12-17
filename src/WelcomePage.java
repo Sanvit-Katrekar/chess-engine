@@ -48,6 +48,7 @@ public class WelcomePage extends JFrame implements ActionListener {
     } catch (IOException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
+      System.out.println("An error occured! Not able to log in..");
     }
   }
   public static void main(String[] args) throws IOException {
@@ -55,5 +56,3 @@ public class WelcomePage extends JFrame implements ActionListener {
     WelcomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 }
-
-//HEHFFHFFHFH
