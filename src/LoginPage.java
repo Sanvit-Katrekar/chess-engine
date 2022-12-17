@@ -16,7 +16,7 @@ public class LoginPage extends JFrame implements ActionListener {
     loginButton = new JButton("Log in");
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
-    JLabel imgLabel = new ImgResource("chess.png", 10, 10, 100, 100);
+    JLabel imgLabel = new ImgResource("chess.png", 100, 100);
 
     JPanel loginPanel = new JPanel();
     loginPanel.add(new JLabel("Username:"));

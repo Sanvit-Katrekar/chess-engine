@@ -15,7 +15,7 @@ public class ImgResource extends JLabel {
         this.imgName = imgName;
         this.setIcon(this.get());
     }
-    public ImgResource(String imgName, int x, int y, int w, int h) throws IOException {
+    public ImgResource(String imgName, int w, int h) throws IOException {
         super();
         this.imgName = imgName;
         this.width = w;
