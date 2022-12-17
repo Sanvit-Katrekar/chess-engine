@@ -2,6 +2,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.LinkedList;
+import javax.imageio.ImageIO;
+
 public class WelcomePage extends JFrame implements ActionListener {
   private JLabel greetingLabel;
   private JButton loginButton;
