@@ -26,7 +26,8 @@ public class Game {
     }
     public static void main(String[] args) throws IOException {
         // Loading chess piece images
-        BufferedImage piecesImg = ImageIO.read(new File(Resource.getResourcePath("pieces.png")));
+        // BufferedImage piecesImg = ImageIO.read(new File(Resource.getResourcePath("pieces.png")));
+        BufferedImage piecesImg = ImgResource.get("pieces.png");
         int imgWidth = piecesImg.getWidth();
         int imgHeight = piecesImg.getHeight();
         int imgRows = 2;
