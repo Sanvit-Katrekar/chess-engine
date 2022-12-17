@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,13 +11,13 @@ import java.nio.file.Path;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
 
-public class WelcomePage extends JFrame implements ActionListener {
+public class LoginPage extends JFrame implements ActionListener {
   private JLabel greetingLabel;
   private JButton loginButton;
   private JButton signupButton;
 
-  public WelcomePage() {
-    super(" Java Chess");
+  public LoginPage() {
+    super("Java Chess Login");
     greetingLabel = new JLabel("Welcome to Java-Chess");
     loginButton = new JButton("Log in");
     signupButton = new JButton("Sign up");
@@ -38,12 +40,16 @@ public class WelcomePage extends JFrame implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent event) {
-    new LoginPage();
+    try {
+      Game game = new Game();
+      game.run();
+    }
+    catch (IOException e) {
+      System.out.println("Error occured: Could not launch login page!");
+    }
   }
   public static void main(String[] args) {
-    WelcomePage WelcomePage = new WelcomePage();
-    WelcomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    LoginPage loginpage = new LoginPage();
+    loginpage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 }
-
-//HEHFFHFFHFH
