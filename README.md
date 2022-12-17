@@ -1,6 +1,6 @@
-# Advanced Chess Engine - OOP with Java
+# Chess Engine - OOP with Java
 
-Chess board game using bit boards
+Chess board game using java programming language
 
 ## Folder Structure
 
