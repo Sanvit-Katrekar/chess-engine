@@ -14,29 +14,34 @@ import javax.imageio.ImageIO;
 public class LoginPage extends JFrame implements ActionListener {
   private JLabel greetingLabel;
   private JButton loginButton;
-  private JButton signupButton;
+  private JTextField usernameField;
+  private JPasswordField passwordField;
 
   public LoginPage() {
     super("Java Chess Login");
-    greetingLabel = new JLabel("Welcome to Java-Chess");
+
+    greetingLabel = new JLabel("Welcome to Chess Login Page ");
     loginButton = new JButton("Log in");
-    signupButton = new JButton("Sign up");
+    usernameField = new JTextField(30);
+    passwordField = new JPasswordField(30);
 
-    JPanel btnPanel = new JPanel();
-    btnPanel.add(loginButton);
-    btnPanel.add(signupButton);
-    btnPanel.setLayout(new FlowLayout());
+    JPanel loginPanel = new JPanel();
+    loginPanel.add(new JLabel("Username:"));
+    loginPanel.add(usernameField);
+    loginPanel.add(new JLabel("Password:"));
+    loginPanel.add(passwordField);
+    loginPanel.add(loginButton);
 
-    super.add(greetingLabel, BorderLayout.CENTER);
-    super.add(btnPanel, BorderLayout.CENTER);
+    add(greetingLabel, BorderLayout.NORTH);
+    add(loginPanel, BorderLayout.CENTER);
 
     loginButton.addActionListener(this);
 
-    this.setLayout(new FlowLayout());
-    
-    super.pack();
-    super.setSize(600, 300);
-    super.setVisible(true);
+    FlowLayout layout = new FlowLayout();
+    loginPanel.setLayout(layout);
+
+    setSize(600, 600);
+    setVisible(true);
   }
 
   public void actionPerformed(ActionEvent event) {

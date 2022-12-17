@@ -15,7 +15,7 @@ public class WelcomePage extends JFrame implements ActionListener {
   private JButton signupButton;
 
   public WelcomePage() {
-    super(" Java Chess");
+    super("Java Chess");
     greetingLabel = new JLabel("Welcome to Java-Chess");
     loginButton = new JButton("Log in");
     signupButton = new JButton("Sign up");
