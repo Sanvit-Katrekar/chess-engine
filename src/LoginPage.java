@@ -17,20 +17,21 @@ public class LoginPage extends JFrame implements ActionListener {
   private JTextField usernameField;
   private JPasswordField passwordField;
 
-  public LoginPage() {
+  public LoginPage() throws IOException {
     super("Java Chess Login");
 
     greetingLabel = new JLabel("Welcome to Chess Login Page ");
     loginButton = new JButton("Log in");
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
-
+    JLabel img = new ImgResource("css.png", 200, 200);
     JPanel loginPanel = new JPanel();
     loginPanel.add(new JLabel("Username:"));
     loginPanel.add(usernameField);
     loginPanel.add(new JLabel("Password:"));
     loginPanel.add(passwordField);
     loginPanel.add(loginButton);
+    loginPanel.add(img);
 
     add(greetingLabel, BorderLayout.NORTH);
     add(loginPanel, BorderLayout.CENTER);
@@ -52,7 +53,7 @@ public class LoginPage extends JFrame implements ActionListener {
       System.out.println("Error occured: Could not launch login page!");
     }
   }
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     LoginPage loginpage = new LoginPage();
     loginpage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
