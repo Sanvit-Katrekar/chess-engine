@@ -41,8 +41,7 @@ public class LoginPage extends JFrame implements ActionListener {
 
   public void actionPerformed(ActionEvent event) {
     try {
-      Game game = new Game();
-      game.run();
+      new Game();
     }
     catch (IOException e) {
       System.out.println("Error occured: Could not launch login page!");

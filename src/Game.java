@@ -22,6 +22,13 @@ public class Game {
         }
         return null;
     }
+    public static boolean instanceExists = false;
+    public Game() throws IOException {
+        if (instanceExists == false) {
+            instanceExists = true;
+            this.run();
+        }
+    }
     public static void main(String[] args) throws IOException {
         Game game = new Game();
         game.run();
