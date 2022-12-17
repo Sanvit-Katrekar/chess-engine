@@ -5,11 +5,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.LinkedList;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Game {
@@ -25,16 +22,21 @@ public class Game {
         }
         return null;
     }
-    public static String getResourcePath(String fileName) {
-        String base = Path.of("src", "assets").toString();
-        if (fileName.endsWith(".png")) {
-            return Path.of(System.getProperty("user.dir"), base, "images", fileName).toString();
+    public static boolean instanceExists = false;
+    public Game() throws IOException {
+        if (instanceExists == false) {
+            instanceExists = true;
+            this.run();
         }
-        return base;
     }
     public static void main(String[] args) throws IOException {
+        Game game = new Game();
+        game.run();
+    }
+    public void run() throws IOException {
         // Loading chess piece images
-        BufferedImage piecesImg = ImageIO.read(new File(getResourcePath("pieces.png")));
+        // BufferedImage piecesImg = ImageIO.read(new File(Resource.getResourcePath("pieces.png")));
+        BufferedImage piecesImg = new ImgResource("pieces.png").getBuff();
         int imgWidth = piecesImg.getWidth();
         int imgHeight = piecesImg.getHeight();
         int imgRows = 2;
@@ -47,8 +49,6 @@ public class Game {
                 index++;
             }    
         }
-    
-
         new Piece("h1", false, "rook", ps);
         new Piece("h2", false, "knight", ps);
         new Piece("h3", false, "bishop", ps);
