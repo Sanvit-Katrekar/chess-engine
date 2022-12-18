@@ -28,12 +28,12 @@ public class WelcomePage extends JFrame implements ActionListener {
 
     JPanel btnPanel = new JPanel();
     btnPanel.setLayout(new BoxLayout(btnPanel, BoxLayout.Y_AXIS));
-    loginButton = new JButton("Log in");
+    loginButton = new JButton();
     loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    signupButton = new JButton("Sign up");
+    signupButton = new JButton();
     signupButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    loginButton.setIcon(new ImgResource("login.png",100, 100).getScaled());
-    signupButton.setIcon(new ImgResource("signup.png",100, 100).getScaled());
+    loginButton.setIcon(new ImgResource("ll.png",200, 100).getScaled());
+    signupButton.setIcon(new ImgResource("su.png",200, 100).getScaled());
     btnPanel.add(loginButton);
     btnPanel.add(signupButton);
     btnPanel.setBorder(new EmptyBorder(50, 0, 0, 0));
