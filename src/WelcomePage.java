@@ -47,7 +47,6 @@ public class WelcomePage extends JFrame implements ActionListener {
     try {
       new LoginPage();
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
       System.out.println("An error occured! Not able to log in..");
     }
