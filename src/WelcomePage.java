@@ -54,7 +54,7 @@ public class WelcomePage extends JFrame {
     signupButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent event) {
       try {
-        new LoginPage();
+        new SignUp();
       } catch (IOException e) {
         e.printStackTrace();
         System.out.println("An error occured! Not able to log in..");

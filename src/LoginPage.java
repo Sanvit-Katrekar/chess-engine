@@ -4,6 +4,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import java.sql.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
 public class LoginPage extends JFrame implements ActionListener {
   private JLabel greetingLabel;
   private JButton loginButton;
@@ -66,8 +70,35 @@ public class LoginPage extends JFrame implements ActionListener {
       System.out.println("Error occured: Could not launch login page!");
     }
   }
+  // Returns SHA1 hash
+  public static String hash(String value) {
+    String sha1 = "";
+		try {
+			MessageDigest digest = MessageDigest.getInstance("SHA-1");
+	        digest.reset();
+	        digest.update(value.getBytes("utf8"));
+	        sha1 = String.format("%040x", new BigInteger(1, digest.digest()));
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+    return sha1;
+  }
   public boolean authenticate() {
-    return true;
+    try {
+      SQLConnector sqltor = new SQLConnector();
+      ResultSet rs = sqltor.executeQuery(String.format("select passwd from User where username = '%s';", usernameField.getText()));
+      String passwdHash = hash(String.valueOf(passwordField.getPassword()));
+      rs.next();
+      if (rs.getString("passwd").equals(passwdHash)) {
+        return true;
+      }
+      return false;
+
+    }
+    catch (Exception e) {
+      System.out.println(e);
+      return false;
+    }
   }
   public static void main(String[] args) throws IOException {
     LoginPage loginpage = new LoginPage();

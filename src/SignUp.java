@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 public class SignUp extends JFrame implements ActionListener {
   private JLabel greetingLabel;
   private JButton confirmButton;
-  private JTextField usernameField,nameField;
+  private JTextField usernameField;
   private JPasswordField passwordField,passwordver;
 
   public SignUp() throws IOException{
@@ -20,21 +20,19 @@ public class SignUp extends JFrame implements ActionListener {
     greetingLabel.setForeground(Color.RED);
     JLabel emptyLabel = new JLabel();
     emptyLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
-    confirmButton = new JButton("Confirm Information");
-    nameField=new JTextField(30);
+    confirmButton = new JButton("Confirm");
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
     passwordver =new JPasswordField(30);
 
     JPanel loginPanel = new JPanel();
     loginPanel.setLayout(new GridLayout(10, 1));
-    loginPanel.add(new JLabel("Name:"));
-    loginPanel.add(nameField);
+    loginPanel.add(new JLabel("Enter details here:"));
     loginPanel.add(new JLabel("Username:"));
     loginPanel.add(usernameField);
     loginPanel.add(new JLabel("Password:"));
     loginPanel.add(passwordField);
-    loginPanel.add(new JLabel(" Verify Password:"));
+    loginPanel.add(new JLabel("Verify Password:"));
     loginPanel.add(passwordver);
 
     JLabel emp2 = new JLabel();
@@ -56,10 +54,21 @@ public class SignUp extends JFrame implements ActionListener {
     }
     public void actionPerformed(ActionEvent event) {
         try {
-          new LoginPage();
+          if (String.valueOf(passwordField.getPassword()).equals(String.valueOf(passwordver.getPassword()))) {
+            SQLConnector sqltor = new SQLConnector();
+            sqltor.executeUpdate(
+              String.format(
+                "INSERT INTO User(username, passwd) VALUE ('%s', '%s');",
+                usernameField.getText(),
+                LoginPage.hash(String.valueOf(passwordField.getPassword())))
+            );
+            JOptionPane.showMessageDialog(this,"Succesfully registered to JavaChess!");
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+          }
         }
-        catch (IOException e) {
-          System.out.println("Error occured: Could not launch SignUp page!");
+        catch (Exception e) {
+          JOptionPane.showMessageDialog(this,"Error occured: Could not Sign Up for JavaChess!");
+          System.out.println("Error occured: Could not Sign Up for JavaChess!");
         }
       }
 
