@@ -1,12 +1,30 @@
 import java.sql.*;
+import java.io.File;
+import java.util.Scanner;
 
 public class SQLConnector {
-    String url = "jdbc:mysql://sql6.freesqldatabase.com/sql6585315";
-    String username = "sql6585315";
-    String passwd = "ThU8rad8Wt";
+    String url;
+    String username;
+    String passwd;
     Connection conn;
     Statement statement;
+    public void init() {
+        try {
+            System.out.println(Resource.getResourcePath("details.txt"));
+            File file = new File(Resource.getResourcePath("details.txt"));
+            Scanner scanner = new Scanner(file);
+            url = scanner.nextLine();
+            username = scanner.nextLine();
+            passwd = scanner.nextLine();
+            scanner.close();
+        }
+        catch (Exception e) {
+            System.out.println(url);
+            System.out.println("Error reading database credentials!");
+        }
+    }
     public SQLConnector() {
+        this.init();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.conn = DriverManager.getConnection(url, username, passwd);

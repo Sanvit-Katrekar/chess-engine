@@ -5,6 +5,6 @@ public class Resource{
         if (fileName.endsWith(".png")) {
             return Path.of(System.getProperty("user.dir"), base, "images", fileName).toString();
         }
-        return base;
+        return Path.of(base, fileName).toString();
     }
 }

@@ -1,0 +1,3 @@
+jdbc:mysql://sql6.freesqldatabase.com/sql6585315
+sql6585315
+ThU8rad8Wt

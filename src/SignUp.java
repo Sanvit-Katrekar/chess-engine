@@ -65,6 +65,9 @@ public class SignUp extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this,"Succesfully registered to JavaChess!");
             this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
           }
+          else {
+            JOptionPane.showMessageDialog(this,"Passwords don't match");
+          }
         }
         catch (Exception e) {
           JOptionPane.showMessageDialog(this,"Error occured: Could not Sign Up for JavaChess!");

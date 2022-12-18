@@ -2,8 +2,9 @@ import java.util.LinkedList;
 
 interface Movable {
     void move(int xp, int yp);
+    String possibleMoves(int i);
 }
-public class Piece implements Movable{
+public abstract class Piece implements Movable {
     int xp;
     int yp;
     int x;

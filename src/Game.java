@@ -9,6 +9,17 @@ import javax.swing.*;
 
 public class Game {
     public static LinkedList<Piece> ps = new LinkedList<>();
+    public static boolean whiteTurn = true;
+    public static String[][] chessBoard = {
+        {"r","k","b","q","a","b","k","r"},
+        {"p","p","p","p","p","p","p","p"},
+        {" "," "," "," "," "," "," "," "},
+        {" "," "," "," "," "," "," "," "},
+        {" "," "," "," "," "," "," "," "},
+        {" "," "," "," "," "," "," "," "},
+        {"P","P","P","P","P","P","P","P"},
+        {"R","K","B","Q","A","B","K","R"}
+    };
     public static Piece selectedPiece = null;
     public static int B_CORRECTION = Piece.CORRECTION * 64;
     public static Piece getPiece(int x,int y) {
@@ -27,6 +38,9 @@ public class Game {
             instanceExists = true;
             this.run();
         }
+    }
+    public static String getPossibleMoves(Piece p, int i) {
+        return p.possibleMoves(i);
     }
     public static void main(String[] args) throws IOException {
         new Game();
@@ -47,40 +61,41 @@ public class Game {
                 index++;
             }    
         }
-        new Piece("h1", false, "rook", ps);
-        new Piece("h2", false, "knight", ps);
-        new Piece("h3", false, "bishop", ps);
-        new Piece("h4", false, "queen", ps);
-        new Piece("h5",  false, "king", ps);
-        new Piece("h6", false, "bishop", ps);
-        new Piece("h7", false, "knight", ps);
-        new Piece("h8", false, "rook", ps);
+        new Rook("h1", false, ps);
+        new Knight("h2", false, ps);
+        new Bishop("h3", false, ps);
+        new Queen("h4", false, ps);
+        new King("h5",  false, ps);
+        new Bishop("h6", false, ps);
+        new Knight("h7", false, ps);
+        new Rook("h8", false, ps);
         
-        new Piece(1, 1, false, "pawn", ps);
-        new Piece(2, 1, false, "pawn", ps);
-        new Piece(3, 1, false, "pawn", ps);
-        new Piece(4, 1, false, "pawn", ps);
-        new Piece(5, 1, false, "pawn", ps);
-        new Piece(6, 1, false, "pawn", ps);
-        new Piece(7, 1, false, "pawn", ps);
-        new Piece(0, 1, false, "pawn", ps);
+        new Pawn(1, 1, false, ps);
+        new Pawn(2, 1, false, ps);
+        new Pawn(3, 1, false, ps);
+        new Pawn(4, 1, false, ps);
+        new Pawn(5, 1, false, ps);
+        new Pawn(6, 1, false, ps);
+        new Pawn(7, 1, false, ps);
+        new Pawn(0, 1, false, ps);
         
-        new Piece(0, 7, true, "rook", ps);
-        new Piece(1, 7, true, "knight", ps);
-        new Piece(2, 7, true, "bishop", ps);
-        new Piece(3, 7, true, "queen", ps);
-        new Piece(4, 7, true, "king", ps);
-        new Piece(5, 7, true, "bishop", ps);
-        new Piece(6, 7, true, "knight", ps);
-        new Piece(7, 7, true, "rook", ps);
-        new Piece(1, 6, true, "pawn", ps);
-        new Piece(2, 6, true, "pawn", ps);
-        new Piece(3, 6, true, "pawn", ps);
-        new Piece(4, 6, true, "pawn", ps);
-        new Piece(5, 6, true, "pawn", ps);
-        new Piece(6, 6, true, "pawn", ps);
-        new Piece(7, 6, true, "pawn", ps);
-        new Piece(0, 6, true, "pawn", ps);
+        new Rook(0, 7, true, ps);
+        new Knight(1, 7, true, ps);
+        new Bishop(2, 7, true, ps);
+        new Queen(3, 7, true, ps);
+        new King(4, 7, true, ps);
+        new Bishop(5, 7, true, ps);
+        new Knight(6, 7, true, ps);
+        new Rook(7, 7, true, ps);
+
+        new Pawn(1, 6, true, ps);
+        new Pawn(2, 6, true, ps);
+        new Pawn(3, 6, true, ps);
+        new Pawn(4, 6, true, ps);
+        new Pawn(5, 6, true, ps);
+        new Pawn(6, 6, true, ps);
+        new Pawn(7, 6, true, ps);
+        new Pawn(0, 6, true, ps);
         
 
         JFrame frame = new JFrame();
@@ -231,6 +246,7 @@ public class Game {
             @Override
             public void mouseReleased(MouseEvent e) {
                 selectedPiece.move(e.getX()/64, e.getY()/64);
+                System.out.println(selectedPiece.possibleMoves(ps.indexOf(selectedPiece)));
                 frame.repaint();
             }
 
