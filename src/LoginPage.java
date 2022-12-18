@@ -21,7 +21,8 @@ public class LoginPage extends JFrame implements ActionListener {
     super("Java Chess Login");
 
     greetingLabel = new JLabel("Welcome to Chess Login Page ");
-    loginButton = new JButton("Log in");
+    loginButton = new JButton();
+    loginButton.setIcon(new ImgResource("login.png",100, 100).getScaled());
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
     JLabel img = new ImgResource("css.png", 200, 200);

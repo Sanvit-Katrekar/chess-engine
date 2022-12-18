@@ -17,9 +17,10 @@ public class WelcomePage extends JFrame implements ActionListener {
   public WelcomePage() throws IOException {
     super("Java Chess");
     greetingLabel = new JLabel("Welcome to Java-Chess");
-    loginButton = new JButton("Log in");
-    signupButton = new JButton("Sign up");
-
+    loginButton = new JButton();
+    signupButton = new JButton();
+    loginButton.setIcon(new ImgResource("login.png",100, 100).getScaled());
+    signupButton.setIcon(new ImgResource("signup.png",100, 100).getScaled());
     JPanel btnPanel = new JPanel();
     btnPanel.add(loginButton);
     btnPanel.add(signupButton);
