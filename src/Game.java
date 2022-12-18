@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Game {
     public static LinkedList<Piece> ps = new LinkedList<>();
     public static Piece selectedPiece = null;
-    public static Piece getPiece(int x,int y){
+    public static Piece getPiece(int x,int y) {
         int xp=x/64;
         int yp=y/64;
         for(Piece p: ps){
@@ -207,8 +207,8 @@ public class Game {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if(selectedPiece!=null){
-                    selectedPiece.x=e.getX()-32;
-                    selectedPiece.y=e.getY()-32;
+                    selectedPiece.x = e.getX()-32-64;
+                    selectedPiece.y = e.getY()-32-64;
                     frame.repaint();
                 }
             }
@@ -224,7 +224,7 @@ public class Game {
 
             @Override
             public void mousePressed(MouseEvent e) {
-            selectedPiece=getPiece(e.getX(), e.getY());
+                selectedPiece = getPiece(e.getX() - 64, e.getY() - 64);
             }
 
             @Override
