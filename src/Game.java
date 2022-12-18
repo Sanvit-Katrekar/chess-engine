@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-//Flip Flops Tussi Great Ho  ~jagadish nayak
+
 
 
 public class Game {
@@ -57,11 +57,11 @@ public class Game {
         new Piece("h2", false, "knight", ps);
         new Piece("h3", false, "bishop", ps);
         new Piece("h4", false, "queen", ps);
-        new Piece("h5",  false, "king", ps);
+        new King("h5", false, "king", ps);
         new Piece("h6", false, "bishop", ps);
         new Piece("h7", false, "knight", ps);
         new Piece("h8", false, "rook", ps);
-        
+
         new Piece(1, 1, false, "pawn", ps);
         new Piece(2, 1, false, "pawn", ps);
         new Piece(3, 1, false, "pawn", ps);

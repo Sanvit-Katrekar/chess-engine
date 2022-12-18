@@ -10,7 +10,7 @@ public class Piece implements Movable{
     int x;
     int y;
     boolean isWhite;
-    LinkedList<Piece> ps;
+    static LinkedList<Piece> ps;
     String name;
     public Piece(int xp, int yp, boolean isWhite,String n, LinkedList<Piece> ps) {
         this.xp = xp;
