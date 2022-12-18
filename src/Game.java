@@ -1,21 +1,17 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.LinkedList;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Game {
-    public static LinkedList<Piece> ps=new LinkedList<>();
-    public static Piece selectedPiece=null;
-    public static Piece getPiece(int x,int y){
+    public static LinkedList<Piece> ps = new LinkedList<>();
+    public static Piece selectedPiece = null;
+    public static int B_CORRECTION = Piece.CORRECTION * 64;
+    public static Piece getPiece(int x,int y) {
         int xp=x/64;
         int yp=y/64;
         for(Piece p: ps){
@@ -25,21 +21,25 @@ public class Game {
         }
         return null;
     }
-    public static String getResourcePath(String fileName) {
-        String base = Path.of("src", "assets").toString();
-        if (fileName.endsWith(".png")) {
-            return Path.of(System.getProperty("user.dir"), base, "images", fileName).toString();
+    public static boolean instanceExists = false;
+    public Game() throws IOException {
+        if (instanceExists == false) {
+            instanceExists = true;
+            this.run();
         }
-        return base;
     }
     public static void main(String[] args) throws IOException {
+        new Game();
+    }
+    public void run() throws IOException {
         // Loading chess piece images
-        BufferedImage piecesImg = ImageIO.read(new File(getResourcePath("pieces.png")));
+        // BufferedImage piecesImg = ImageIO.read(new File(Resource.getResourcePath("pieces.png")));
+        BufferedImage piecesImg = new ImgResource("pieces.png").getBuff();
         int imgWidth = piecesImg.getWidth();
         int imgHeight = piecesImg.getHeight();
         int imgRows = 2;
         int imgCols = 6;
-        Image[] imgs=new Image[12];
+        Image[] imgs = new Image[12];
         int index = 0;
         for(int y = 0; y < imgHeight; y += imgHeight/imgRows){
             for(int x=0; x < imgWidth; x += imgWidth/imgCols){
@@ -47,8 +47,6 @@ public class Game {
                 index++;
             }    
         }
-    
-
         new Piece("h1", false, "rook", ps);
         new Piece("h2", false, "knight", ps);
         new Piece("h3", false, "bishop", ps);
@@ -84,12 +82,26 @@ public class Game {
         new Piece(7, 6, true, "pawn", ps);
         new Piece(0, 6, true, "pawn", ps);
         
-        JFrame rootFrame = new JFrame();
-        rootFrame.setBounds(10, 10, 600, 600);
+
         JFrame frame = new JFrame();
-        frame.setBounds(10, 10, 512, 545);
-        //frame.setUndecorated(true);
-        JPanel pn = new JPanel(){
+        //frame.setBounds(10, 10, 512, 545);
+        Color BG_COLOR = new Color(58, 69, 73);
+        frame.getContentPane().setBackground(BG_COLOR);
+        frame.setResizable(false);
+        frame.setBounds(10, 10, 700, 700);
+        GridBagLayout layout = new GridBagLayout();
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        //do the same for columns 
+        //layout.setConstraints(frame, gbc);
+        frame.setLayout(layout);
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.insets = new Insets(0,0,0,0);
+
+        JPanel pn = new JPanel() {
             @Override
             public void paint(Graphics g) {
                 boolean white=true;
@@ -150,13 +162,54 @@ public class Game {
             }
             
         };
-        frame.add(pn);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.5;
+        frame.add(new JLabel(), gbc);
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        //gbc.fill = GridBagConstraints.HORIZONTAL;
+        for (int i = 1; i <= 8; i++) {
+            JLabel label1 = new JLabel(String.valueOf((char) ('a' + i - 1)), SwingConstants.CENTER);
+            label1.setOpaque(true);
+            label1.setBackground(BG_COLOR);
+            label1.setForeground(Color.WHITE);
+            gbc.gridx = i;
+            gbc.gridy = 0;
+            frame.add(label1, gbc);
+            JLabel label2 = new JLabel(""+i, SwingConstants.CENTER);
+            label2.setOpaque(true);
+            label2.setBackground(BG_COLOR);
+            label2.setForeground(Color.WHITE);
+            gbc.gridx = 0;
+            gbc.gridy = i;
+            frame.add(label2, gbc);
+        }
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.weighty = 0.5;
+        frame.add(new JLabel(), gbc);
+        gbc.gridy = 10;
+        frame.add(new JLabel(), gbc);
+        gbc.gridx = 9;
+        gbc.gridy = 0;
+        gbc.weightx = 0.5;
+        frame.add(new JLabel(), gbc);
+        gbc.gridx = 10;
+        frame.add(new JLabel(), gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 8;
+        gbc.gridheight = 8;
+        gbc.fill = GridBagConstraints.BOTH;
+        frame.add(pn, gbc);
         frame.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if(selectedPiece!=null){
-                    selectedPiece.x=e.getX()-32;
-                    selectedPiece.y=e.getY()-32;
+                    selectedPiece.x = e.getX() - 32 - B_CORRECTION;
+                    selectedPiece.y = e.getY() - 32 - B_CORRECTION;
                     frame.repaint();
                 }
             }
@@ -172,7 +225,7 @@ public class Game {
 
             @Override
             public void mousePressed(MouseEvent e) {
-            selectedPiece=getPiece(e.getX(), e.getY());
+                selectedPiece = getPiece(e.getX() - B_CORRECTION, e.getY() - B_CORRECTION);
             }
 
             @Override
