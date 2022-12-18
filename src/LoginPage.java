@@ -3,13 +3,7 @@ import java.io.IOException;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.LinkedList;
-import javax.imageio.ImageIO;
+import javax.swing.border.EmptyBorder;
 
 public class LoginPage extends JFrame implements ActionListener {
   private JLabel greetingLabel;
@@ -20,29 +14,40 @@ public class LoginPage extends JFrame implements ActionListener {
   public LoginPage() throws IOException {
     super("Java Chess Login");
 
-    greetingLabel = new JLabel("Welcome to Chess Login Page ");
-    loginButton = new JButton();
-    loginButton.setIcon(new ImgResource("login.png",100, 100).getScaled());
+    greetingLabel = new JLabel("Login to JavaChess");
+    greetingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    greetingLabel.setFont(new Font("Nimbus", Font.PLAIN, 20));
+    greetingLabel.setForeground(Color.RED);
+    JLabel emptyLabel = new JLabel();
+    emptyLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
+    loginButton = new JButton("Log in");
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
-    JLabel img = new ImgResource("css.png", 200, 200);
+
     JPanel loginPanel = new JPanel();
+    loginPanel.setLayout(new GridLayout(10, 1));
     loginPanel.add(new JLabel("Username:"));
     loginPanel.add(usernameField);
     loginPanel.add(new JLabel("Password:"));
     loginPanel.add(passwordField);
+    JLabel emp2 = new JLabel();
+    emp2.setBorder(new EmptyBorder(50, 0, 0, 0));
+    loginPanel.add(emp2);
     loginPanel.add(loginButton);
-    loginPanel.add(img);
+    loginPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
 
-    add(greetingLabel, BorderLayout.NORTH);
+    JLabel img = new ImgResource("css.png", 200, 200);
+    img.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+    add(greetingLabel);
+    add(emptyLabel);
+    add(img);
     add(loginPanel, BorderLayout.CENTER);
 
     loginButton.addActionListener(this);
 
-    FlowLayout layout = new FlowLayout();
-    loginPanel.setLayout(layout);
-
     setSize(600, 600);
+    this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
     setVisible(true);
   }
 
