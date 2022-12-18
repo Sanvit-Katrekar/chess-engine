@@ -24,6 +24,22 @@ public class LoginPage extends JFrame implements ActionListener {
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
 
+    JButton bck=new JButton();
+    bck.setIcon(new ImgResource("back.png",50, 50).getScaled());
+    bck.addActionListener(new ActionListener(){
+
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          new WelcomePage();
+        } 
+        catch (IOException e1) {
+          e1.printStackTrace();
+        }
+        
+      }
+    });
+
     JPanel loginPanel = new JPanel();
     loginPanel.setLayout(new GridLayout(10, 1));
     loginPanel.add(new JLabel("Username:"));
@@ -34,6 +50,7 @@ public class LoginPage extends JFrame implements ActionListener {
     emp2.setBorder(new EmptyBorder(50, 0, 0, 0));
     loginPanel.add(emp2);
     loginPanel.add(loginButton);
+    loginPanel.add(bck);
     loginPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
 
     JLabel img = new ImgResource("css.png", 200, 200);
