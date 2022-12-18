@@ -43,6 +43,8 @@ public class WelcomePage extends JFrame implements ActionListener {
 
     loginButton.addActionListener(this);
 
+    
+
     super.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
     super.setVisible(true);
   }
