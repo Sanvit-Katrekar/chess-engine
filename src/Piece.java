@@ -6,7 +6,6 @@ interface Movable {
 public class Piece implements Movable{
     int xp;
     int yp;
-    
     int x;
     int y;
     boolean isWhite;
@@ -35,7 +34,7 @@ public class Piece implements Movable{
     
     public void move(int xp,int yp){
         if (Game.getPiece(xp*64, yp*64)!=null){
-            if (Game.getPiece(xp*64, yp*64).isWhite!=isWhite){
+            if (Game.getPiece(xp*64, yp*64).isWhite != isWhite){
                 Game.getPiece(xp*64, yp*64).kill();
             }
             else {

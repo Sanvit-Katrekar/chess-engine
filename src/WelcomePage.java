@@ -17,7 +17,6 @@ public class WelcomePage extends JFrame implements ActionListener {
     super.pack();
     super.setSize(width/2, height - 350);
 
-
     greetingLabel = new JLabel("Welcome to JavaChess");
     greetingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     greetingLabel.setFont(new Font("Nimbus", Font.PLAIN, 20));
