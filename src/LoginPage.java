@@ -20,7 +20,7 @@ public class LoginPage extends JFrame implements ActionListener {
     greetingLabel.setForeground(Color.RED);
     JLabel emptyLabel = new JLabel();
     emptyLabel.setBorder(new EmptyBorder(10, 0, 10, 0));
-    loginButton = new JButton("Log in");
+    loginButton = new JButton("Login");
     usernameField = new JTextField(30);
     passwordField = new JPasswordField(30);
 

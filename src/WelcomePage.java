@@ -32,8 +32,8 @@ public class WelcomePage extends JFrame implements ActionListener {
     loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     signupButton = new JButton();
     signupButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    loginButton.setIcon(new ImgResource("ll.png",200, 100).getScaled());
-    signupButton.setIcon(new ImgResource("su.png",200, 100).getScaled());
+    loginButton.setIcon(new ImgResource("ll1.png",200, 100).getScaled());
+    signupButton.setIcon(new ImgResource("su1.png",200, 100).getScaled());
     btnPanel.add(loginButton);
     btnPanel.add(signupButton);
     btnPanel.setBorder(new EmptyBorder(50, 0, 0, 0));
