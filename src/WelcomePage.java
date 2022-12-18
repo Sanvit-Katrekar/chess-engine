@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.io.IOException;
 
-public class WelcomePage extends JFrame implements ActionListener {
+public class WelcomePage extends JFrame {
   private JLabel greetingLabel;
   private JButton loginButton;
   private JButton signupButton;
@@ -41,22 +41,30 @@ public class WelcomePage extends JFrame implements ActionListener {
     super.add(img);
     super.add(btnPanel);
 
-    loginButton.addActionListener(this);
-
-    
-
+    loginButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+      try {
+        new LoginPage();
+      } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("An error occured! Not able to log in..");
+      }
+    }
+    });
+    signupButton.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+      try {
+        new LoginPage();
+      } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("An error occured! Not able to log in..");
+      }
+    }
+    });
     super.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
     super.setVisible(true);
   }
 
-  public void actionPerformed(ActionEvent event) {
-    try {
-      new LoginPage();
-    } catch (IOException e) {
-      e.printStackTrace();
-      System.out.println("An error occured! Not able to log in..");
-    }
-  }
   public static void main(String[] args) throws IOException {
     WelcomePage WelcomePage = new WelcomePage();
     WelcomePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,5 +1,4 @@
 import java.io.IOException;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -54,11 +53,21 @@ public class LoginPage extends JFrame implements ActionListener {
 
   public void actionPerformed(ActionEvent event) {
     try {
-      new Game();
+      JFrame f = new JFrame();
+      if (authenticate()) {
+        JOptionPane.showMessageDialog(f,"Succesfully logged in!");
+        new Game();
+      }
+      else {
+        JOptionPane.showMessageDialog(f,"Incorrect username/password!");
+      }
     }
     catch (IOException e) {
       System.out.println("Error occured: Could not launch login page!");
     }
+  }
+  public boolean authenticate() {
+    return true;
   }
   public static void main(String[] args) throws IOException {
     LoginPage loginpage = new LoginPage();
