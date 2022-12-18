@@ -10,6 +10,7 @@ import javax.swing.*;
 public class Game {
     public static LinkedList<Piece> ps = new LinkedList<>();
     public static Piece selectedPiece = null;
+    public static int B_CORRECTION = Piece.CORRECTION * 64;
     public static Piece getPiece(int x,int y) {
         int xp=x/64;
         int yp=y/64;
@@ -207,8 +208,8 @@ public class Game {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if(selectedPiece!=null){
-                    selectedPiece.x = e.getX()-32-64;
-                    selectedPiece.y = e.getY()-32-64;
+                    selectedPiece.x = e.getX() - 32 - B_CORRECTION;
+                    selectedPiece.y = e.getY() - 32 - B_CORRECTION;
                     frame.repaint();
                 }
             }
@@ -224,7 +225,7 @@ public class Game {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                selectedPiece = getPiece(e.getX() - 64, e.getY() - 64);
+                selectedPiece = getPiece(e.getX() - B_CORRECTION, e.getY() - B_CORRECTION);
             }
 
             @Override

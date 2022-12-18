@@ -35,7 +35,12 @@ public class Piece implements Movable{
     
     public void move(int xp,int yp){
         xp -= CORRECTION; yp -= CORRECTION;
-        if (Game.getPiece(xp*64, yp*64)!=null){
+        if (xp < 0 || yp < 0 || xp > 7 || yp > 7) {
+            x = this.xp*64;
+            y = this.yp*64;
+            return;
+        }
+        if (Game.getPiece(xp*64, yp*64) != null){
             if (Game.getPiece(xp*64, yp*64).isWhite != isWhite){
                 Game.getPiece(xp*64, yp*64).kill();
             }
